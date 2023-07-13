@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import org.json.JSONObject
 import java.net.URL
 
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,25 +18,24 @@ class MainActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         val adapter = RecyclerViewAdapter(getLeaderboard())
-        
+
         setContentView(R.layout.activity_main)
-        val recyclerView : RecyclerView = findViewById(R.id.recycler_view)
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
 
 
-        val searchView : SearchView = findViewById(R.id.limit)
-        searchView.setInputType(InputType.TYPE_CLASS_NUMBER)
-        searchView.setOnQueryTextListener(
+        val limitSearchView: SearchView = findViewById(R.id.limit)
+        limitSearchView.setInputType(InputType.TYPE_CLASS_NUMBER)
+        limitSearchView.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     if (query.isNullOrBlank()) {
                         adapter.updateList(getLeaderboard())
-                    }
-                    else {
+                    } else {
                         adapter.updateList(getLeaderboard(query))
                     }
-                    
+
                     return false
                 }
 
@@ -51,8 +49,6 @@ class MainActivity : AppCompatActivity() {
                     return false
                 }
             })
-
-
 
     }
 

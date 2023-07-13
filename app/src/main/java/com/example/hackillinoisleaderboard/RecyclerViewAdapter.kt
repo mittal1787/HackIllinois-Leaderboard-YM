@@ -45,6 +45,8 @@ class RecyclerViewAdapter(private var peopleList: List<Person>) : RecyclerView.A
         }
         else if (peopleList[position].rank.equals("3")) {
             viewHolder.rankText.setTextColor(Color.rgb(205, 127, 50))
+        } else {
+            viewHolder.rankText.setTextColor(Color.BLACK)
         }
 
     }
